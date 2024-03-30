@@ -54,7 +54,7 @@ const Navbar = () => {
             { icon: <ShoppingCartOutlinedIcon /> },
             { icon: <LogoutOutlinedIcon /> }
           ].map((item, index) => (
-            <>
+            <div key={index}>
             <ListItem button key={item.text}>
               <ListItemText primary={item.text} />
             </ListItem>
@@ -63,7 +63,7 @@ const Navbar = () => {
               <ListItemIcon>{item.icon}</ListItemIcon>
             </ListItem>
             }
-            </>
+            </div>
           ))}
         </List>
       </Drawer>
