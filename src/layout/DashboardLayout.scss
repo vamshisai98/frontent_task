@@ -1,0 +1,11 @@
+.DashboardLayout__layout{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+.DashboardLayout--container {
+    flex: 1;
+  }
+.footer {
+    flex-shrink: 0;
+  }
