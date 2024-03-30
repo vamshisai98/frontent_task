@@ -56,7 +56,7 @@ const AddForm = () => {
                   <InputField label="First Aid Information" name="firstAidInfo" placeholder='Allergies?'/>
                 </Grid>
                 <Grid item xs={12} sm={6} className='AddForm--form' display={'flex'} alignItems='end'>
-                <MyDateTimePicker name="dob" label="Select Date and Time" />
+                <MyDateTimePicker name="dob" label="DOB" />
                 </Grid>
               </Grid>
 
