@@ -12,8 +12,9 @@ export const COLOR_TONES = ['#F2D0B4', '#F5C6A4', '#EFC9B6', '#D3996E', '#BC7657
 
 export const validationSchema =  Yup.object({
     name: Yup.string().required('Name is required'),
-    // Add more fields and validation rules as needed
+    gender: Yup.string().required('Gender is required'),
+    dob: Yup.string().required('DOB is required'),
   });
 
 
-export const INITIAL_VALUES = { name: '' }
+export const INITIAL_VALUES = { name: '',gender:'male',firstAidInfo:'',dob:'' }
