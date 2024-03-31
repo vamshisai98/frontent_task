@@ -1,29 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Formik, Form, Field } from 'formik';
 
-import { Grid, Box, Avatar, Stack, Link,Button } from '@mui/material';
+import { Grid, Box, Avatar, Stack, Link, Button } from '@mui/material';
 import './AddForm.scss'
-import { COLOR_TONES, AVATARS, validationSchema, INITIAL_VALUES, SKIN_COLOR_TONES } from './Constants';
+import { COLOR_TONES, AVATARS, validationSchema, INITIAL_VALUES, SKIN_COLOR_TONES, COUNTRIES, ADDRESSES } from './Constants';
 import InputField from '../common/FormFields/InputField/InputField';
 import GenderRadioGroup from './GenderRadioGroup';
 import MyDateTimePicker from '../common/FormFields/DateTimeField/DateTimePicker';
 import DropDownField from '../common/FormFields/DropDownField/DropDownField';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import PostCode from './PostCode';
+import Loader from '../common/Loader/Loader';
 
 
 const AddForm = () => {
-  const countries = [
-    { value: 'India', label: 'India' },
-    { value: 'UK', label: 'United Kingdom' }
-  ];
-
-  const addresses = [
-    { value: '123 Main St, Bangalore, Karnataka, India', label: '123 Main St, Bangalore, Karnataka, India' },
-    { value: '456 Elm St, London, England, UK', label: '456 Elm St, London, England, UK' },
-    { value: '789 Oak St, Manchester, England, UK', label: '789 Oak St, Manchester, England, UK' }
-  ];
-
+  const [loading, setLoading] = useState(false)
   return (
     <Grid container>
       <Grid item xs={12} textAlign={'center'} className='AddForm__heading'> Add children/adult details </Grid>
@@ -74,7 +65,7 @@ const AddForm = () => {
               </Grid>
               <Grid container spacing={2} my={1}>
                 <Grid item xs={12} sm={6} className='AddForm--form' >
-                  <DropDownField options={countries} label="Address Details" name="address" />
+                  <DropDownField options={COUNTRIES} label="Address Details" name="address" />
                 </Grid>
                 <Grid item xs={12} sm={6} className='AddForm--form' display={'flex'} alignItems={'end'} >
                   <PostCode name='pCode' />
@@ -83,33 +74,30 @@ const AddForm = () => {
 
               <Grid container my={1}>
                 <Grid item xs={12} sm={12} className='AddForm--form' pb={2}>
-                  <DropDownField options={addresses} label="" name="sAddress" placeholder='Select Address' />
+                  <DropDownField options={ADDRESSES} label="" name="sAddress" placeholder='Select Address' />
                 </Grid>
                 <Link href="#" underline="always" color="#000000" >
                   Enter address manually
                 </Link>
               </Grid>
               <Grid container>
-              <Grid display="flex"  alignItems="center" flexWrap={'wrap'}>
-                {COLOR_TONES.map((color, index) => (
-                  <Grid  key={index} sx={{ width: 40, height: 40, bgcolor: color, marginRight: 2, marginBottom:2, borderRadius: '50%', }} />
-                ))}
-              </Grid>
+                <Grid display="flex" alignItems="center" flexWrap={'wrap'}>
+                  {COLOR_TONES.map((color, index) => (
+                    <Grid key={index} sx={{ width: 40, height: 40, bgcolor: color, marginRight: 2, marginBottom: 2, borderRadius: '50%', }} />
+                  ))}
+                </Grid>
               </Grid>
               <Grid container>
                 <Grid item xs={12}>
-                  <Button variant="contained" fullWidth type="submit" p={1} disableElevation sx={{borderRadius:'32px', textTransform:'capitalize'}}>Add</Button>
-                  <Button variant='text' fullWidth type="submit" my={1} p={1} disableElevation sx={{borderRadius:'32px', textTransform:'capitalize', color:'black'}}><ArrowBackIcon/> Back</Button>
+                  <Button variant="contained" fullWidth type="submit" p={1} disableElevation sx={{ borderRadius: '32px', textTransform: 'capitalize' }}>Add</Button>
+                  <Button variant='text' fullWidth type="submit" my={1} p={1} disableElevation sx={{ borderRadius: '32px', textTransform: 'capitalize', color: 'black' }}><ArrowBackIcon /> Back</Button>
                 </Grid>
-
               </Grid>
-
             </Form>
-
           </Formik>
-
         </Box>
       </Grid>
+      <Loader loading={loading} />
     </Grid>
   )
 }

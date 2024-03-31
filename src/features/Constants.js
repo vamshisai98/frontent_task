@@ -7,6 +7,17 @@ export const AVATARS = [
     { alt: 'Travis Howard', src: '/static/images/avatar/2.jpg' ,color: 'lightBlue'}
   ];
 
+export  const COUNTRIES = [
+    { value: 'India', label: 'India' },
+    { value: 'UK', label: 'United Kingdom' }
+  ];
+
+export const ADDRESSES = [
+    { value: '123 Main St, Bangalore, Karnataka, India', label: '123 Main St, Bangalore, Karnataka, India' },
+    { value: '456 Elm St, London, England, UK', label: '456 Elm St, London, England, UK' },
+    { value: '789 Oak St, Manchester, England, UK', label: '789 Oak St, Manchester, England, UK' }
+  ];
+
 export const SKIN_COLOR_TONES = ['#F2D0B4', '#F5C6A4', '#EFC9B6', '#D3996E', '#BC7657', '#9E5E47', '#814539'];
 
 
