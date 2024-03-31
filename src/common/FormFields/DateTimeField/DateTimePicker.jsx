@@ -14,8 +14,12 @@ const DateTimePicker = ({ name, label, ...rest }) => {
 
 
     const handleChange = (value) => {
-        const formattedDate = dayjs(field.value.$d).format('MM/DD/YYYY');
-        setValue(formattedDate);
+        if (value) {
+            const formattedDate = dayjs(value.$d).format('MM/DD/YYYY');
+            setValue(formattedDate);
+        } else {
+            setValue(null);
+        }
     };
 
 
@@ -29,8 +33,9 @@ const DateTimePicker = ({ name, label, ...rest }) => {
                 <DatePicker
                     {...field}
                     {...rest}
-                    value={dayjs(field.value || null)}
+                    value={field.value ? dayjs(field.value) : null}
                     onChange={handleChange}
+                    sx={{border:meta.touched && meta.error && '1px solid red',borderRadius:'5px'}}
                 />
                 {meta.touched && meta.error && (
                     <Box>
