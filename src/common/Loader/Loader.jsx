@@ -1,8 +1,17 @@
-import React from 'react';
+import React ,{useState,useEffect} from 'react';
 import { CircularProgress, Grid, Typography } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
-const Loader = ({loading}) => {
+const Loader = () => {
+
+    const[isLoading,setIsLoading] = useState(true)
+
+    useEffect(() => {
+        setTimeout(()=>{
+            setIsLoading(false)
+        },1000)
+    }, []);
+
   return (
     <Grid
       container
@@ -19,7 +28,7 @@ const Loader = ({loading}) => {
       }}
     >
       <Grid item sx={{background:'white', borderRadius:'0.5rem', width:'10%'}} p={2} textAlign='center' >
-        {loading ? (<>
+        {isLoading ? (<>
         <CircularProgress sx={{color:"#F39200"}} size={60} />
         <Typography variant="body1" color="textPrimary" align="center" mt={2}>
           Loading...

@@ -14,7 +14,39 @@ import Loader from '../common/Loader/Loader';
 
 
 const AddForm = () => {
-  const [loading, setLoading] = useState(false)
+
+  const [isShowLoading, setIsShowLoading] = useState(false)
+
+  const handleSubmitValues =  (data,{ resetForm } ) => {
+    setIsShowLoading(true)
+      const token = 'AKFJDHFWLKWEKKNW@#&(USA';
+      if (token === '') {
+        setTimeout(()=>{
+          setIsShowLoading(false)
+        },1000)
+        throw new Error('JWT token is missing');
+      }
+      try {
+        const response = {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          content:data
+        }
+        console.log(response,'RES');
+        setTimeout(()=>{
+          setIsShowLoading(false)
+          resetForm();
+        },3000)
+      } catch (error) {
+        console.log(error)
+        setTimeout(()=>{
+          setIsShowLoading(false)
+        },3000)
+      }
+  };
+
   return (
     <Grid container>
       <Grid item xs={12} textAlign={'center'} className='AddForm__heading'> Add children/adult details </Grid>
@@ -40,8 +72,8 @@ const AddForm = () => {
           <Formik
             initialValues={INITIAL_VALUES}
             validationSchema={validationSchema}
-            onSubmit={(values) => {
-              console.log(values);
+            onSubmit={(values,{ resetForm }) => {
+              handleSubmitValues(values,{ resetForm })
             }}
           >
             <Form>
@@ -67,7 +99,7 @@ const AddForm = () => {
                 <Grid item xs={12} sm={6} className='AddForm--form' >
                   <DropDownField options={COUNTRIES} label="Address Details" name="address" />
                 </Grid>
-                <Grid item xs={12} sm={6} className='AddForm--form' display={'flex'} alignItems={'end'} >
+                <Grid item xs={12} sm={6} className='AddForm--form' display={'flex'} sx={{marginTop:'27px'}} >
                   <PostCode name='pCode' />
                 </Grid>
               </Grid>
@@ -97,7 +129,7 @@ const AddForm = () => {
           </Formik>
         </Box>
       </Grid>
-      <Loader loading={loading} />
+     {isShowLoading && <Loader/>}
     </Grid>
   )
 }
