@@ -2,7 +2,7 @@ import React from 'react';
 import { useField } from 'formik';
 import { Grid, TextField, Box } from '@mui/material';
 
-const PostCode = (...props) => {
+const PostCode = ({...props}) => {
     const [field, meta] = useField('pCode');
     const error = meta.touched && meta.error;
 
